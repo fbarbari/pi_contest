@@ -1,3 +1,3 @@
 # pi_contest
 
-Pi contest
+Educational game to estimate Greek π using "Monte Carlo" Method
