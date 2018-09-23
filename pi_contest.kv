@@ -1,0 +1,269 @@
+#:import Factory kivy.factory.Factory
+
+#:include player.kv
+
+<AppScreen>:
+    size_hint_y: 0.05
+    orientation: 'horizontal'
+    Button:
+        text             : 'HOME'
+        font_size        : 26
+        background_color : rgba("#1564EE")
+        on_press         : app.root.current = 'home'
+    Button:
+        text             : 'DEMO'
+        font_size        : 26
+        background_color : rgba("#F30E0E")
+        on_press         :
+            app.demo_init()
+            app.root.current = 'demo'
+    Button:
+        text             : app.pi_str + 'LAY'
+        text             : 'PLAY'
+        font_size        : 26
+        background_color : 0, 1, 0, 1
+        on_press         :
+            app.play_init()
+            app.root.current = 'play'
+    Button:
+        text             : app.pi_str + ' GURU'
+        font_size        : 26
+        background_color : rgba("#F30E0E")
+        on_press         :
+            app.update_scores()
+            app.root.current = 'fame'
+    Button:
+        text      : 'QUIT'
+        font_size : 26
+        on_press  : app.stop()
+
+<HomeScreen>:
+    name: 'home'
+    BoxLayout:
+        pos_hint    : {"top"     : 1.02}
+        orientation : 'vertical'
+        Label:
+            text      : "PI greco CONTEST"
+            font_size : 62
+        Image:
+            source        : 'figure/pi_logo.gif'
+            size_hint_y   : 2.5
+            allow_stretch : True
+        Label:
+            text      : "3.141592653589793"
+            font_size : 40
+    AppScreen:
+
+
+<FameScreen>:
+    name: 'fame'
+    BoxLayout:
+        pos_hint    : {"top" : 1.0}
+        size_hint_y : 0.9
+        orientation : 'vertical'
+        Label:
+            size_hint_y : 0.1
+            halign      : 'center'
+            text        : "PI Contest Hall of Fame"
+            font_name   : "RobotoMono-Regular"
+            font_size   : 22
+        ScrollView:
+            scroll_y: 1
+            Label:
+                size_hint_y : 1.111
+                id          : list_player
+                valign      : 'top'
+                halign      : 'left'
+                text        : Factory.PlayerPopup().list(True, True)
+                font_name   : "RobotoMono-Regular"
+                font_size   : 16
+    AppScreen:
+
+<DemoScreen>:
+    name: 'demo'
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            pos  : self.pos
+            size : self.size
+    BoxLayout:
+        size_hint_y : 0.95
+        pos_hint    : {"top" : 1}
+        orientation : 'horizontal'
+        BoxLayout:
+            orientation : 'vertical'
+            pos_hint    : {"top" : 1.03}
+            size_hint_y : 1.03
+            Circle:
+                id: circle
+            Graph:
+                id: graph
+        BoxLayout:
+            orientation: 'vertical'
+            CountDown:
+                id: countdown
+            Algorithm:
+            AskCoords:
+                id: ask
+    AppScreen:
+
+
+<PlayScreen>:
+    name: 'play'
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            pos  : self.pos
+            size : self.size
+    BoxLayout:
+        size_hint_y : 0.95
+        pos_hint    : {"top" : 1}
+        orientation : 'horizontal'
+        BoxLayout:
+            orientation : 'vertical'
+            pos_hint    : {"top" : 1.03}
+            size_hint_y : 1.03
+            Circle:
+                id: circle
+            Graph:
+                id: graph
+        BoxLayout:
+            orientation: 'vertical'
+            CountDown:
+                id: countdown
+            Algorithm:
+            AskCoords:
+                id: ask
+        JoyListener:
+            size_hint: 0, 0
+    AppScreen:
+
+
+<Algorithm>:
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            pos  : self.pos
+            size : self.size
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text      : "Algoritmo MonteCarlo per il calcolo del PI greco"
+            font_size : 28
+            color     : 0, 0, 0, 1
+        Image:
+            source        : "figure/pi_formula1.png"
+            allow_stretch : True
+            height        : 2000
+        Image:
+            source        : "figure/pi_formula2.png"
+            allow_stretch : True
+            height        : 1000
+
+<CountDown>:
+    canvas:
+        Color:
+            rgba: rgba("#F22222")
+        Rectangle:
+            pos  : self.pos
+            size : self.size
+    orientation : 'horizontal'
+    padding     : 5
+    size_hint   : 1, 0.2
+    anchor_x    : 'left'
+    Button:
+        text             : "START"
+        size_hint        : 0.5, 1.0
+        font_size        : 40
+        background_color : 0, 1, 0, 1
+        on_press         : root.start_clock()
+    DownClock:
+        id        : downclock
+        size_hint : 1.5, 0.5
+        font_size : 40
+
+<AskCoords>:
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            pos  : self.pos
+            size : self.size
+    Label:
+        text      : "Il punto con le seguenti coordinate\nè interno al cerchio?"
+        halign    : 'center'
+        font_size : 28
+        color     : 0, 0, 0, 1
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            text      : root.ask_text
+            font_size : 32
+            color     : 0,0,0,1
+            halign    : 'left'
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Button:
+            size_hint         : 0.33, 0.75
+            text              : "IN"
+            font_size         : 32
+            on_press          : root.press_button(True)
+            #background_color : 0,1,0,1
+            background_color  : rgba("#33FF33")
+        Button:
+            size_hint         : 0.33, 0.75
+            text              : "OUT"
+            font_size         : 32
+            on_press          : root.press_button(False)
+            #background_color : 1,0,0,1
+            background_color  : rgba("#FF3333")
+
+    BoxLayout:
+        size_hint_y: 1.0
+        Label:
+            text      : root.pi_and_error
+            color     : 0, 0, 0, 1
+            font_size : 32
+
+
+<Circle>:
+    size_hint_y: 0.7
+
+<Graph>:
+    size_hint_y: 1.1
+
+
+<ErrorNumberPopup>:
+    size_hint  : 0.6, 0.25
+    title      : "ERRORE"
+    title_size : 22
+    Label:
+        text      : "Sbagliato!\nAspetta 2 secondi per un altro punto"
+        halign    : "center"
+        font_size : 22
+
+
+<EndTimePopup>:
+    size_hint  : 0.6, 0.4
+    title_size : 22
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: msg
+            font_size: 22
+        BoxLayout:
+            size_hint_y: 0.3
+            Button:
+                text       : 'save'
+                id         : save_button
+                on_release : root.dismiss()
+            Button:
+                text       : 'return'
+                on_release : root.dismiss()
+

@@ -1,0 +1,65 @@
+#:set default_font_name "RobotoMono-Regular"
+
+<PlayerPopup>:
+    size_hint    : 0.6, 0.33
+    auto_dismiss : False
+    font_size    : 38
+    title_size: 20
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            id           : player_name
+            font_name    : default_font_name
+            focus        : True
+            multiline    : False
+            valign       : "middle"
+            halign       : "center"
+            input_filter : lambda text, from_undo : text[ : root.MAX_PLAYER_LENGTH - len(self.text)]
+        BoxLayout:
+            Button:
+                text: 'save'
+                on_release: root.save_player(player_name.text)
+            Button:
+                text: 'return'
+                on_release: root.dismiss()
+
+<TemplatePopup>:
+    title_size: 22
+    auto_dismiss : False
+    size_hint    : None, None
+    size         : 400, 170
+
+<HerPopup>:
+    size         : 400, 270
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: msg
+            font_size: 22
+        Button:
+            size_hint_y: 0.33
+            text: 'Close'
+            on_release: root.dismiss()
+
+<ExistingPopup>:
+    auto_dismiss : True
+    size         : 400, 270
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: msg
+            font_size: 22
+        BoxLayout:
+            size_hint_y: 0.33
+            Button:
+                text: 'Save'
+                id: save_button
+                on_release: root.dismiss()
+            Button:
+                text: 'Replace'
+                id: replace_button
+                on_release: root.dismiss()
+            Button:
+                text: 'Return'
+                on_release: root.dismiss()
+
