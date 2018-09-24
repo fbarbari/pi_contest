@@ -2,7 +2,7 @@
 __version__ = "1.0"
 
 from kivy.config import Config
-#Config.set('graphics', 'fullscreen', 'auto')
+Config.set('graphics', 'fullscreen', 'auto')
 
 from kivy.app import App
 from kivy.uix.popup import Popup
