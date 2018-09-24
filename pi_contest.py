@@ -134,6 +134,7 @@ class Algorithm(BoxLayout):
 class CountDown(AnchorLayout):
 
     def start_clock(self):
+        App.get_running_app().reset()
         self.ids.downclock.start()
 
     def reset_clock(self, demo=False):
@@ -214,6 +215,16 @@ class pi_contest(App):
         sm.current = 'home'
 
         return sm
+
+    def reset(self):
+        try:
+            self.play_init()
+        except:
+            pass
+        try:
+            self.demo_init()
+        except:
+            pass
 
     def play_init(self):
         self.demo.ids.countdown.reset_clock()
