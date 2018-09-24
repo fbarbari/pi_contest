@@ -6,13 +6,13 @@
 
 Educational game to estimate Greek π using "Monte Carlo" Method
 
-# Install
+# Install requirements
 
 ```
 pip3 install -r requirements.txt
 ```
 
-# Run
+# Run & Fun
 
 ```
 ./pi_contest
