@@ -40,8 +40,8 @@ class PlayerPopup(Popup):
     def _write(self):
         pickle.dump(self.series, open(self.file_score, 'wb'))
 
-    def _sort(self):
-        self.series = sorted(self.series, key=lambda tup: tup[1], reverse=True)
+    def _sort(self, reverse=False):
+        self.series = sorted(self.series, key=lambda tup: tup[1], reverse=reverse)
 
     def reset(self):
         try:
