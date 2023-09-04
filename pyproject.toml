@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pi-contest"
+version = "0.1.0"
+description = "Educational game to estimate Greek π using Monte Carlo Method"
+authors = [
+    "Sergio Orlandini <s.orlandini@cineca.it>",
+    "Filippo Barbari <f.barbari@cineca.it>",
+    "Alessandro Casalino <a.casalino@cineca.it>"
+]
+license = "GPL-3.0-only"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+kivy = "^2.2.1"
+kivy-garden = "^0.1.5"
+pygame = "^2.5.1"
+matplotlib = "^3.7.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
