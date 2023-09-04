@@ -7,7 +7,6 @@ def random_coords():
 
 
 class PiGame(object):
-
     def __init__(self):
         self.m_total = 0
         self.m_inside = 0
@@ -22,7 +21,7 @@ class PiGame(object):
         try:
             return float(self.m_inside) / self.m_total * 4.0
         except BaseException:
-            return float('nan')
+            return float("nan")
 
     def error(self):
         return abs(math.pi - self.value()) / math.pi * 100.0
@@ -37,7 +36,5 @@ class PiGame(object):
     def inside(self):
         x = self.m_coords[0]
         y = self.m_coords[1]
-        if x**2 + y**2 < 1:
-            return True
-        else:
-            return False
+
+        return x**2 + y**2 < 1

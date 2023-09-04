@@ -3,7 +3,6 @@ from kivy.properties import StringProperty
 
 
 class AskLayout(BoxLayout):
-
     ask_text = StringProperty()
     string_right_answer = StringProperty()
     pi_and_error = StringProperty()
@@ -29,10 +28,11 @@ class AskLayout(BoxLayout):
             self.answer = True
         print("ask_coords", coords)
         self.ask_text = "x = {:5.1f}\ny = {:5.1f}".format(
-            coords[0] * 100, coords[1] * 100)
+            coords[0] * 100, coords[1] * 100
+        )
 
     def press_button(self, answer):
-        #self.answer = True
+        # self.answer = True
         self.answered = True
         self.answer_inside = answer
 
@@ -45,7 +45,7 @@ class AskLayout(BoxLayout):
     def update_value_and_error(self, value, error):
         try:
             self.pi_and_error = "PI = {:10.8f}      ERR = {:10.8f}%".format(
-                value, error)
+                value, error
+            )
         except BaseException:
-            self.pi_and_error = "PI = {:>20s}      ERR = {:>20s}%".format(
-                "-", "-")
+            self.pi_and_error = "PI = {:>20s}      ERR = {:>20s}%".format("-", "-")
