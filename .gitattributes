@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+# Kivy files
+*.kv text
+
+# Images
+*.jpg binary
+*.png binary
+*.gif binary
