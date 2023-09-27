@@ -9,10 +9,13 @@ RUN cd \
 
 ENV XDG_RUNTIME_DIR=/run/user/0
 
-COPY . .
+COPY ./pyproject.toml .
+COPY ./poetry.lock .
 
 RUN poetry install \
     && chmod +x `poetry env info -p`/bin/garden \
     && poetry run garden install matplotlib
+
+COPY . .
 
 CMD poetry run python3 ./pi_contest
