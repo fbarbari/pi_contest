@@ -40,8 +40,8 @@ class GraphLayout(BoxLayout):
 
         ax.axhline(y=math.pi, color="black", alpha=0.5)
 
-        ax.set_xlabel("Number of trials", fontsize=14)
-        ax.set_ylabel(r"Computed ${\pi}$ value", fontsize=14)
+        ax.set_xlabel("Tentativi", fontsize=14)
+        ax.set_ylabel(r"${\pi}$ calcolato", fontsize=14)
 
         ax.set_title(title, size=14)
 

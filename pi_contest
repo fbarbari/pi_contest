@@ -115,7 +115,7 @@ class PlayScreen(Screen):
                 if right_answer:
                     if REPEAT:
                         print("REPEAT")
-                    for i in range(REPEAT):
+                    for _ in range(REPEAT):
                         self.pi_game.throw_coords()
                         self.pi_game.add()
 
